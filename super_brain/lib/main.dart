@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/Pages/MainPage.dart';
-import 'package:super_brain/Pages/WordsList/10WordsPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,11 +34,7 @@ class MyApp extends StatelessWidget {
           color: Colors.white
         ),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => MainPage(),
-        'tenWordsPage': (context) => TenWordsPage()
-      },
+      home: MainPage(),
     );
   }
 }

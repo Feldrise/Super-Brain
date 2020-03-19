@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_brain/Pages/HomePage.dart';
-import 'package:super_brain/Pages/MorningPage.dart';
-import 'package:super_brain/Pages/RemindersPage.dart';
+import 'package:super_brain/BottomNavigation.dart';
+import 'package:super_brain/TabNavigator.dart';
 
 class MainPage extends StatefulWidget {
 
@@ -9,49 +8,63 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  int _currentIndex = 1;
+  
+  Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
+    TabItem.morning: GlobalKey<NavigatorState>(),
+    TabItem.home: GlobalKey<NavigatorState>(),
+    TabItem.reminders: GlobalKey<NavigatorState>(),
+  };
 
-  final List<Widget> _children = [
-    MorningPage(),
-    HomePage(),
-    RemindersPage(),
-  ];
+  TabItem _currentTab = TabItem.home;
 
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+  void _selectTab(TabItem tabItem) {
+    if (tabItem == _currentTab) {
+      // pop to first route
+      _navigatorKeys[tabItem].currentState.popUntil((route) => route.isFirst);
+    } else {
+      setState(() => _currentTab = tabItem);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     appBar: AppBar(
-       title: Text('Super Brain'),
-     ),
-     body: Padding(
-       padding: EdgeInsets.all(8.0),
-       child: _children[_currentIndex],
-     ),
-     bottomNavigationBar: BottomNavigationBar(
-       onTap: onTabTapped,
-       currentIndex: _currentIndex, // this will be set when a new tab is tapped
-       items: [
-         BottomNavigationBarItem(
-           icon: new Icon(Icons.brightness_5),
-           title: new Text('Morning'),
-         ),
-         BottomNavigationBarItem(
-           icon: new Icon(Icons.home),
-           title: new Text('Home'),
-         ),
-         BottomNavigationBarItem(
-           icon: Icon(Icons.notifications),
-           title: Text('Reminders')
-         )
-       ],
-     ),
-   );
+    return WillPopScope(
+      onWillPop: () async {
+        final isFirstRouteInCurrentTab =
+            !await _navigatorKeys[_currentTab].currentState.maybePop();
+        if (isFirstRouteInCurrentTab) {
+          // if not on the 'main' tab
+          if (_currentTab != TabItem.home) {
+            // select 'main' tab
+            _selectTab(TabItem.home);
+            // back button handled by app
+            return false;
+          }
+        }
+        // let system handle back button if we're on the first route
+        return isFirstRouteInCurrentTab;
+      },
+      child: Scaffold(
+        body: Stack(children: <Widget>[
+          _buildOffstageNavigator(TabItem.morning),
+          _buildOffstageNavigator(TabItem.home),
+          _buildOffstageNavigator(TabItem.reminders),
+        ]),
+        bottomNavigationBar: BottomNavigation(
+          currentTab: _currentTab,
+          onSelectTab: _selectTab,
+        ),
+      ),
+    );
   }
 
+  Widget _buildOffstageNavigator(TabItem tabItem) {
+    return Offstage(
+      offstage: _currentTab != tabItem,
+      child: TabNavigator(
+        navigatorKey: _navigatorKeys[tabItem],
+        tabItem: tabItem,
+      ),
+    );
+  }
 }

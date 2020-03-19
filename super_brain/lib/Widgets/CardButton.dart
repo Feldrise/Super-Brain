@@ -1,24 +1,19 @@
 
 import 'package:flutter/material.dart';
-import 'package:super_brain/Pages/WordsList/10WordsPage.dart';
 
 class CardButton extends StatelessWidget {
 
-  const CardButton({Key key, this.icon, this.title, this.destinationPage}) : super(key: key);
+  const CardButton({Key key, this.icon, this.title, this.destinationPage, this.onPush}) : super(key: key);
 
   final IconData icon;
   final String title;
   final String destinationPage;
+  final ValueChanged<String> onPush;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => TenWordsPage()),
-        )
-      },
+      onTap: () => onPush(destinationPage),
       child: Card( 
         child: Padding(
           padding: EdgeInsets.all(16.0),
