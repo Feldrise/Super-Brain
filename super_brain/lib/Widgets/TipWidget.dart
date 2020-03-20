@@ -3,7 +3,34 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class TipWidget extends StatelessWidget {
+import 'package:http/http.dart' as http;
+
+class TipWidget extends StatefulWidget {
+
+  TipWidgetState createState() => TipWidgetState();
+}
+
+class TipWidgetState extends State<TipWidget> {
+  Future<String> tip;
+
+  Future<String> fetchTip() async {
+    final response = await http.get('https://feldrise.com/super_brain/dailyTip');
+
+    if (response.statusCode == 200) {
+      return response.body.toString();
+    } 
+    else {
+      throw Exception('Failed to load words');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    tip = fetchTip();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card (
@@ -21,17 +48,30 @@ class TipWidget extends StatelessWidget {
             ),
             Expanded(
               child: Center(
-                child: RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      color: Colors.black87
-                    ),
-                    children: <TextSpan>[
-                      new TextSpan(text: "Tip of the day: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(text: "Remember to sleep, cause sleep is really important for your brain. You should sleep in a completly dark place, without any work and cold.")
-                    ]
-                  )
-                ),
+                child: FutureBuilder<String>(
+                  future: tip,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return 
+                        RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              color: Colors.black87
+                            ),
+                            children: <TextSpan>[
+                              new TextSpan(text: "Tip of the day: ", style: TextStyle(fontWeight: FontWeight.bold)),
+                              new TextSpan(text: snapshot.data)
+                            ]
+                          )
+                        );
+                    } 
+                    else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+                    // By default, show a loading spinner.
+                    return CircularProgressIndicator();
+                  },
+                ), 
               ),
             ),
           ],
