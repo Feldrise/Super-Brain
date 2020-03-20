@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/BottomNavigation.dart';
+import 'package:super_brain/Pages/DreamsJournalPage.dart';
 import 'package:super_brain/Pages/HomePage.dart';
 import 'package:super_brain/Pages/MorningPage.dart';
 import 'package:super_brain/Pages/RemindersPage.dart';
@@ -13,6 +14,7 @@ class TabNavigatorRoutes {
   static const String tenWordsPage = '/tenWordsPage';
   static const String fifteenWordsPage = '/fifteenWordsPage';
   static const String twentyWordsPage = '/twentyWordsPage';
+  static const String dreamsJournal = '/dreamsJournalPage';
 }
 
 class TabNavigator extends StatelessWidget {
@@ -42,7 +44,10 @@ class TabNavigator extends StatelessWidget {
     // };
     if (tabItem == TabItem.morning) {
       return {
-        TabNavigatorRoutes.root: (context) => MorningPage(),
+        TabNavigatorRoutes.root: (context) => MorningPage(
+          onPush: (destinationPage) => _push(context, destinationPage: destinationPage),
+        ),
+        TabNavigatorRoutes.dreamsJournal: (context) => DreamsJournalPage(),
       };
     }
     else if (tabItem == TabItem.reminders) {
