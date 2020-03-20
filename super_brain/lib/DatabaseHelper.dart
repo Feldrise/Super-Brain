@@ -98,5 +98,12 @@ class DatabaseHelper {
       whereArgs: [id]
     );
   }
-  // TODO: update(Word word)
+  
+  Future<void> update(DreamItem dreamItem) async {
+    Database db = await database;
+    db.update(tableDreams, dreamItem.toMap(),
+      where: '$dreamsColumnId = ?',
+      whereArgs: [dreamItem.id]
+    );
+  }
 }

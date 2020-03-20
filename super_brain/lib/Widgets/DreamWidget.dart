@@ -4,23 +4,32 @@ import 'package:super_brain/Models/DreamItem.dart';
 import 'package:super_brain/Widgets/ViewDreamDialog.dart';
 
 class DreamWidget extends StatefulWidget {
-  const DreamWidget({Key key, @required this.initialDream, @required this.onDreamRemovedRemoved}) : super(key: key);
+  const DreamWidget({Key key, @required this.initialDream, @required this.onDreamRemovedRemoved, @required this.onDreamEdited}) : super(key: key);
 
   final DreamItem initialDream;
 
   final DreamRemoved onDreamRemovedRemoved;
+  final DreamEdited onDreamEdited;
 
   DreamWidgetState createState() => DreamWidgetState();
 }
 
 class DreamWidgetState extends State<DreamWidget> {
-  DreamItem dreamItem;
+  DreamItem _dreamItem;
+
+  void _dreamEdited(DreamItem dreamItem) {
+    setState(() {
+      _dreamItem = dreamItem;
+    });
+    
+    widget.onDreamEdited(_dreamItem);
+  }
 
   @override
   void initState() {
     super.initState();
 
-    dreamItem = widget.initialDream;
+    _dreamItem = widget.initialDream;
   }
 
   @override
@@ -33,8 +42,9 @@ class DreamWidgetState extends State<DreamWidget> {
             Expanded(
               child: Column(
                 children: <Widget>[
-                  Text(dreamItem.date, style: TextStyle(fontWeight: FontWeight.bold),),
-                  Text(dreamItem.text)
+                  Text(_dreamItem.date, style: TextStyle(fontWeight: FontWeight.bold),),
+                  SizedBox(height: 8,),
+                  Text(_dreamItem.text, overflow: TextOverflow.ellipsis, maxLines: 4,)
                 ],
               )
             ),
@@ -54,7 +64,7 @@ class DreamWidgetState extends State<DreamWidget> {
                         onPressed: () async {
                           showDialog(
                             context: context,
-                            builder: (BuildContext context) => ViewDreamDialog(dreamItem: dreamItem),
+                            builder: (BuildContext context) => ViewDreamDialog(dreamItem: _dreamItem, onDreamEdited: _dreamEdited,),
                           );
                         },
                       ),
@@ -71,7 +81,7 @@ class DreamWidgetState extends State<DreamWidget> {
                         icon: Icon(Icons.delete),
                         color: Colors.white,
                         onPressed: () {
-                          widget.onDreamRemovedRemoved(dreamItem);
+                          widget.onDreamRemovedRemoved(_dreamItem);
                         },
                       ),
                     ),
@@ -87,3 +97,4 @@ class DreamWidgetState extends State<DreamWidget> {
 }
 
 typedef DreamRemoved = void Function(DreamItem dreamItem);
+typedef DreamEdited = void Function(DreamItem dreamItem);

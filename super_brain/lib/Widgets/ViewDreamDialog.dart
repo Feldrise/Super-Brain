@@ -3,9 +3,11 @@ import 'package:super_brain/Models/DreamItem.dart';
 import 'package:super_brain/Widgets/ViewDreamWidget.dart';
 
 class ViewDreamDialog extends StatelessWidget {
-  const ViewDreamDialog({Key key, @required this.dreamItem}) : super(key: key);
+  const ViewDreamDialog({Key key, @required this.dreamItem, @required this.onDreamEdited}) : super(key: key);
 
   final DreamItem dreamItem;
+
+  final DreamEdited onDreamEdited;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,9 @@ class ViewDreamDialog extends StatelessWidget {
       ),      
       elevation: 0.0,
       backgroundColor: Colors.transparent,
-      child: ViewDreamWidget(initialDream: dreamItem),
+      child: ViewDreamWidget(initialDream: dreamItem, onDreamEdited: onDreamEdited,),
     );
   }
 }
+
+typedef DreamEdited = void Function(DreamItem dreamItem);
