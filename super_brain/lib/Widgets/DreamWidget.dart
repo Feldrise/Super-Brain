@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:super_brain/Items/DreamItem.dart';
+import 'package:super_brain/Models/DreamItem.dart';
+import 'package:super_brain/Widgets/ViewDreamDialog.dart';
 
 class DreamWidget extends StatefulWidget {
   const DreamWidget({Key key, this.initialDream}) : super(key: key);
@@ -48,7 +49,12 @@ class DreamWidgetState extends State<DreamWidget> {
                       child: IconButton(
                         icon: Icon(Icons.visibility),
                         color: Colors.white,
-                        onPressed: () async {},
+                        onPressed: () async {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => ViewDreamDialog(dreamItem: dreamItem),
+                          );
+                        },
                       ),
                     ),
                   ),
