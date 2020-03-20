@@ -11,7 +11,7 @@ class TitleWidget extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 4 / 1,
       child: Center(
-        child: Text(title)
+        child: Text(title, style: Theme.of(context).textTheme.title,)
       ),
     );
   }

@@ -4,8 +4,22 @@ import 'package:super_brain/Widgets/TitleWidget.dart';
 import 'package:super_brain/Widgets/WordWidget.dart';
 
 class TenWordsPage extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
+    final List<String> words = [
+      "Bee",
+      "Diamon",
+      "Barrel",
+      "Fingerprint",
+      "Bird",
+      "Fire Hydrant",
+      "Forest",
+      "Consumption",
+      "Circket",
+      "Pink"
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
@@ -14,16 +28,19 @@ class TenWordsPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             TitleWidget(title: "Daily 10 words list"),
-            WordWidget(number: "1", word: "Bee"),
-            WordWidget(number: "2", word: "Bee"),
-            WordWidget(number: "3", word: "Bee"),
-            WordWidget(number: "4", word: "Bee"),
-            WordWidget(number: "5", word: "Bee"),
-            WordWidget(number: "6", word: "Bee"),
-            WordWidget(number: "7", word: "Bee"),
-            WordWidget(number: "8", word: "Bee"),
-            WordWidget(number: "9", word: "Bee"),
-            WordWidget(number: "10", word: "Bee"),
+            Container(
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: words.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: WordWidget(number: "${index + 1}", word: "${words[index]}",),
+                      // title: Text("$index. ${words[index]}")
+                    );
+                  }
+                ),
+              ),
+            ),
           ],
         ),
       )
