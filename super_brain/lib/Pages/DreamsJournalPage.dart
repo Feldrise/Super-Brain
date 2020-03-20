@@ -40,6 +40,21 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
     });
   }
 
+  void removeDream(DreamItem dreamItem) async {
+    setState(() {
+      isLoading = true;
+    });
+
+    DatabaseHelper helper = DatabaseHelper.instance;
+
+    await helper.delete(dreamItem.id);
+    _dreams.remove(dreamItem);
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +80,7 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
           itemCount: _dreams.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: DreamWidget(initialDream: _dreams.toList()[index],),
+              title: DreamWidget(initialDream: _dreams.toList()[index], onDreamRemovedRemoved: removeDream,),
             );
           },
         ),

@@ -4,9 +4,11 @@ import 'package:super_brain/Models/DreamItem.dart';
 import 'package:super_brain/Widgets/ViewDreamDialog.dart';
 
 class DreamWidget extends StatefulWidget {
-  const DreamWidget({Key key, this.initialDream}) : super(key: key);
+  const DreamWidget({Key key, @required this.initialDream, @required this.onDreamRemovedRemoved}) : super(key: key);
 
   final DreamItem initialDream;
+
+  final DreamRemoved onDreamRemovedRemoved;
 
   DreamWidgetState createState() => DreamWidgetState();
 }
@@ -68,7 +70,9 @@ class DreamWidgetState extends State<DreamWidget> {
                       child: IconButton(
                         icon: Icon(Icons.delete),
                         color: Colors.white,
-                        onPressed: () async {},
+                        onPressed: () {
+                          widget.onDreamRemovedRemoved(dreamItem);
+                        },
                       ),
                     ),
                   ),
@@ -81,3 +85,5 @@ class DreamWidgetState extends State<DreamWidget> {
     );
   }
 }
+
+typedef DreamRemoved = void Function(DreamItem dreamItem);

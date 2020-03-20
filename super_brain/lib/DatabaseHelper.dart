@@ -91,5 +91,12 @@ class DatabaseHelper {
 
   }
 
+  Future<void> delete(int id) async {
+    Database db = await database;
+    db.delete(tableDreams,
+      where: '$dreamsColumnId = ?',
+      whereArgs: [id]
+    );
+  }
   // TODO: update(Word word)
 }
