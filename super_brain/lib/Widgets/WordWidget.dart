@@ -11,6 +11,7 @@ class WordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 2,
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Row(

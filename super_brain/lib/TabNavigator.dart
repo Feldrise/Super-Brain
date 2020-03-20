@@ -5,10 +5,14 @@ import 'package:super_brain/Pages/HomePage.dart';
 import 'package:super_brain/Pages/MorningPage.dart';
 import 'package:super_brain/Pages/RemindersPage.dart';
 import 'package:super_brain/Pages/WordsList/10WordsPage.dart';
+import 'package:super_brain/Pages/WordsList/15WordsPage.dart';
+import 'package:super_brain/Pages/WordsList/20WordsPage.dart';
 
 class TabNavigatorRoutes {
   static const String root = '/';
   static const String tenWordsPage = '/tenWordsPage';
+  static const String fifteenWordsPage = '/fifteenWordsPage';
+  static const String twentyWordsPage = '/twentyWordsPage';
 }
 
 class TabNavigator extends StatelessWidget {
@@ -52,6 +56,8 @@ class TabNavigator extends StatelessWidget {
         onPush: (destinationPage) => _push(context, destinationPage: destinationPage),
       ),
       TabNavigatorRoutes.tenWordsPage: (context) => TenWordsPage(),
+      TabNavigatorRoutes.fifteenWordsPage: (context) => FifteenWordsPage(),
+      TabNavigatorRoutes.twentyWordsPage: (context) => TwentyWordsPage(),
     };
   }
 

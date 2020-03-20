@@ -5,15 +5,15 @@ import 'package:super_brain/Widgets/WordWidget.dart';
 
 import 'package:http/http.dart' as http;
 
-class TenWordsPage extends StatefulWidget {
-  TenWordsPageState createState() => TenWordsPageState();
+class TwentyWordsPage extends StatefulWidget {
+  TwentyWordsPageState createState() => TwentyWordsPageState();
 }
 
-class TenWordsPageState extends State<TenWordsPage> {
+class TwentyWordsPageState extends State<TwentyWordsPage> {
   Future<List<String>> futureWords;
 
   Future<List<String>> fetchWords() async {
-    final response = await http.get('https://feldrise.com/super_brain/10words');
+    final response = await http.get('https://feldrise.com/super_brain/20words');
 
     if (response.statusCode == 200) {
       return response.body.toString().split(",");
@@ -34,12 +34,12 @@ class TenWordsPageState extends State<TenWordsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home > 10 Words List"),
+        title: Text("Home > 20 Words List"),
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            TitleWidget(title: "Daily 10 words list"),
+            TitleWidget(title: "Daily 20 words list"),
             Container(
               child: FutureBuilder<List<String>>(
                 future: futureWords,
