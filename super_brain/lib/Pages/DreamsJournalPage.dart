@@ -38,7 +38,7 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
 
     DatabaseHelper helper = DatabaseHelper.instance;
 
-    await helper.delete(dreamItem.id);
+    await helper.deleteDream(dreamItem.id);
 
     _dreams.clear();
 
@@ -57,7 +57,7 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
 
     DatabaseHelper helper = DatabaseHelper.instance;
 
-    await helper.update(dreamItem);
+    await helper.updateDream(dreamItem);
 
     setState(() {
       isLoading = false;
@@ -79,7 +79,7 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
 
     DatabaseHelper helper = DatabaseHelper.instance;
 
-    await helper.insert(newDream);
+    await helper.insertDream(newDream);
     _dreams.clear();
 
     Set<DreamItem> toAdd = await helper.queryAllDreams();

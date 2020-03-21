@@ -40,7 +40,7 @@ class BottomNavigation extends StatelessWidget {
       onTap: (index) => onSelectTab(
         TabItem.values[index],
       ),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).primaryColor,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.white54,
     );
