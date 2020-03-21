@@ -3,6 +3,7 @@ import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/JournalItem.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
 import 'package:super_brain/Widgets/DailyJournal/JournalWidget.dart';
+import 'package:super_brain/Widgets/TitleWidget.dart';
 
 class DailyJournalPage extends StatefulWidget {
   DailyJournalPageState createState() => DailyJournalPageState();
@@ -106,22 +107,31 @@ class DailyJournalPageState extends State<DailyJournalPage> {
         title: Text("Morning > Daily Jourrnal"),
       ),
       body: Container(
-        child: GridView.builder(
-          primary: false,
-          padding: const EdgeInsets.all(8),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0,
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 4,
-          ),
-          itemCount: _journals.length,
-          itemBuilder: (context, index) {
-            return Container(
-              child: JournalWidget(initialJournal: _journals.toList()[_journals.length - 1 - index], onJournalRemoved: _removeJournal, onJournalEdited: _updateJournal,),
-            );
-          },
-        )
+        child: Column(
+          children: <Widget>[
+            TitleWidget(title: "Daily Journal",),
+            Container(
+              child: Expanded(
+                child: GridView.builder(
+                  primary: false,
+                  padding: const EdgeInsets.all(8),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0,
+                    crossAxisCount: 2,
+                    childAspectRatio: 3 / 4,
+                  ),
+                  itemCount: _journals.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: JournalWidget(initialJournal: _journals.toList()[_journals.length - 1 - index], onJournalRemoved: _removeJournal, onJournalEdited: _updateJournal,),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {

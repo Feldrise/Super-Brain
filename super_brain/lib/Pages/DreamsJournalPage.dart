@@ -4,6 +4,7 @@ import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/DreamItem.dart';
 import 'package:super_brain/Widgets/DreamsJournal/DreamWidget.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
+import 'package:super_brain/Widgets/TitleWidget.dart';
 
 class DreamsJournalPage extends StatefulWidget {
 
@@ -105,13 +106,22 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
         title: Text("Morning > Dreams Jourrnal"),
       ),
       body: Container(
-        child: ListView.builder(
-          itemCount: _dreams.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: DreamWidget(initialDream: _dreams.toList()[_dreams.length - 1 - index], onDreamRemovedRemoved: _removeDream, onDreamEdited: _updateDream,),
-            );
-          },
+        child: Column(
+          children: <Widget>[
+            TitleWidget(title: "Dreams Journal",),
+            Container(
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: _dreams.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: DreamWidget(initialDream: _dreams.toList()[_dreams.length - 1 - index], onDreamRemovedRemoved: _removeDream, onDreamEdited: _updateDream,),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

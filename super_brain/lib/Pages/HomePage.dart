@@ -17,10 +17,10 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: Column(
           children: <Widget>[
-            Expanded(child: TipWidget()),
-            AspectRatio(aspectRatio: 3 / 1, child: CardButton(icon: Icons.format_list_numbered, title: "Daily 10 words list", destinationPage: "tenWordsPage", onPush: onPush)),
-            AspectRatio(aspectRatio: 3 / 1, child: CardButton(icon: Icons.format_list_numbered, title: "Daily 15 words list", destinationPage: "fifteenWordsPage", onPush: onPush,)),
-            AspectRatio(aspectRatio: 3 / 1, child: CardButton(icon: Icons.format_list_numbered, title: "Daily 20 words list", destinationPage: "twentyWordsPage", onPush: onPush,)),
+            Expanded(flex: 4, child: TipWidget()),
+            Expanded(flex: 2, child: CardButton(icon: Icons.format_list_numbered, title: "Daily 10 words list", destinationPage: "tenWordsPage", onPush: onPush)),
+            Expanded(flex: 2, child: CardButton(icon: Icons.format_list_numbered, title: "Daily 15 words list", destinationPage: "fifteenWordsPage", onPush: onPush,)),
+            Expanded(flex: 2, child: CardButton(icon: Icons.format_list_numbered, title: "Daily 20 words list", destinationPage: "twentyWordsPage", onPush: onPush,)),
           ],
         )
       )
