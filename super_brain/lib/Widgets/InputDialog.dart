@@ -6,8 +6,7 @@ class InputDialog {
 
     return showDialog<String>(
       context: context,
-      barrierDismissible:
-          true, // dialog is dismissible with a tap on the barrier
+      barrierDismissible: false, // dialog is dismissible with a tap on the barrier
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(description),

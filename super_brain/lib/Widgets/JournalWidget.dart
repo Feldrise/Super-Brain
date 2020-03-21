@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/Models/JournalItem.dart';
+import 'package:super_brain/Widgets/ViewJournalDialog.dart';
 
 class JournalWidget extends StatefulWidget {
   const JournalWidget({Key key, @required this.initialJournal, @required this.onJournalRemoved, @required this.onJournalEdited}) : super(key: key);
@@ -61,10 +62,10 @@ class JournalWidgetState extends State<JournalWidget> {
                         icon: Icon(Icons.visibility),
                         color: Colors.white,
                         onPressed: () async {
-                          // showDialog(
-                          //   context: context,
-                          //   builder: (BuildContext context) => ViewDreamDialog(dreamItem: _dreamItem, onDreamEdited: _dreamEdited,),
-                          // );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => ViewJournalDialog(journalItem: _journalItem, onJournalEdited: _journalEdited,),
+                          );
                         },
                       ),
                     ),

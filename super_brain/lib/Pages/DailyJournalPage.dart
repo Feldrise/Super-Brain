@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/JournalItem.dart';
+import 'package:super_brain/Widgets/InputDialog.dart';
 import 'package:super_brain/Widgets/JournalWidget.dart';
 
 class DailyJournalPage extends StatefulWidget {
@@ -124,15 +125,25 @@ class DailyJournalPageState extends State<DailyJournalPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // final String text = await InputDialog.asyncStringDialog(
-          //     context,
-          //     'Enter the dream content',
-          //     'Dream Content',
-          //     'eg. Pets, Game...',
-          //     '');
-          // if (text.isNotEmpty) {
-          //   _addDream(text);
-          // }
+          final String title = await InputDialog.asyncStringDialog(
+              context,
+              'Enter the journal title',
+              'Journal Title',
+              'eg. How I Love Her...',
+              '');
+
+          if (title.isNotEmpty) {
+            final String text = await InputDialog.asyncStringDialog(
+                  context,
+                  'Enter the journal content',
+                  'Journal Content',
+                  'eg. Todo : x; NoTodo : x...',
+                  '');
+            
+            if (title.isNotEmpty && text.isNotEmpty) {
+              _addJournal(title, text);
+            }
+          }
         },
         tooltip: 'Add Journal',
         child: Icon(Icons.add),
