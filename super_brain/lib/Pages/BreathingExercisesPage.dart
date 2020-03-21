@@ -1,28 +1,48 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_brain/Models/BrethingExercise.dart';
-import 'package:super_brain/Widgets/CardButton.dart';
-import 'package:super_brain/Widgets/TipWidget.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
+
+import 'package:http/http.dart' as http;
 
 class BreathingExercisesPage extends StatefulWidget {
   BreathingExercisesPageState createState() => BreathingExercisesPageState();
 }
 
 class BreathingExercisesPageState extends State<BreathingExercisesPage> {
-  List<BreathingExercise> _exercises = [
-    BreathingExercise(duration: 60, description: "Respire bien pendant 1 minute..."),
-    BreathingExercise(duration: 30, description: "Respire bien pendant 30 secondes..."),
-    BreathingExercise(duration: 90, description: "Respire bien pendant 1 minute et 30 secondes..."),
-  ];
+  List<BreathingExercise> _exercises = [];
 
   int _currentTime = 0;
   String _currentDescription = "Welcome to breathing exercises. The instructions for the exercises will scroll here while the timer show remaining time for current exercise. Press the \"start\" button to begin the exercises.";
   bool _exercisePlaying = false;
 
-  _startExercise(int exerciceNumber) {
+  Future fetchExercises() async {
+    final response = await http.get('https://feldrise.com/super_brain/breathingExercises');
+
+    if (response.statusCode == 200) {
+      List<dynamic> httpExercise = json.decode(response.body);
+
+      for (var exercise in httpExercise) {
+        _exercises.add(BreathingExercise.fromJson(exercise));
+      }
+    } 
+    else {
+      throw Exception('Failed to load words');
+    }
+  }
+
+  _startExercise(int exerciceNumber) async {
+    if (_exercises.isEmpty) {
+      setState(() {
+        _exercisePlaying = true;
+      });
+
+      await fetchExercises();
+    }
+    
     _currentTime = _exercises[exerciceNumber].duration;
     _currentDescription = _exercises[exerciceNumber].description;
 
@@ -57,7 +77,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
           children: <Widget>[
             TitleWidget(title: "Morning Breathing Exercises"),
             Expanded(
-              flex: 3, 
+              flex: 5, 
               child: Card(
                 color: Theme.of(context).primaryColor,
                 child: Padding(
@@ -78,7 +98,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
               ),
             ),
             Expanded(
-              flex: 5, 
+              flex: 3, 
               child: Card(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
