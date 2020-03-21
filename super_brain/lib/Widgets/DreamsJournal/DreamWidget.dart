@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/Models/DreamItem.dart';
-import 'package:super_brain/Widgets/ViewDreamDialog.dart';
+import 'package:super_brain/Widgets/DreamsJournal/ViewDreamDialog.dart';
 
 class DreamWidget extends StatefulWidget {
   const DreamWidget({Key key, @required this.initialDream, @required this.onDreamRemovedRemoved, @required this.onDreamEdited}) : super(key: key);

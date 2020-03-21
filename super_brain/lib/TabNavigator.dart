@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/BottomNavigation.dart';
+import 'package:super_brain/Pages/BreathingExercisesPage.dart';
 import 'package:super_brain/Pages/DailyJournalPage.dart';
 import 'package:super_brain/Pages/DreamsJournalPage.dart';
 import 'package:super_brain/Pages/HomePage.dart';
@@ -16,6 +17,7 @@ class TabNavigatorRoutes {
   static const String fifteenWordsPage = '/fifteenWordsPage';
   static const String twentyWordsPage = '/twentyWordsPage';
   static const String dreamsJournalPage = '/dreamsJournalPage';
+  static const String breathingExercisesPage = '/breathingExercicesPage';
   static const String dailyJournalPage = '/dailyJournalPage';
 }
 
@@ -50,6 +52,7 @@ class TabNavigator extends StatelessWidget {
           onPush: (destinationPage) => _push(context, destinationPage: destinationPage),
         ),
         TabNavigatorRoutes.dreamsJournalPage: (context) => DreamsJournalPage(),
+        TabNavigatorRoutes.breathingExercisesPage: (context) => BreathingExercisesPage(),
         TabNavigatorRoutes.dailyJournalPage: (context) => DailyJournalPage(),
       };
     }

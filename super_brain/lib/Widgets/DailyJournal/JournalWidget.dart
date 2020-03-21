@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/Models/JournalItem.dart';
-import 'package:super_brain/Widgets/ViewJournalDialog.dart';
+import 'package:super_brain/Widgets/DailyJournal/ViewJournalDialog.dart';
 
 class JournalWidget extends StatefulWidget {
   const JournalWidget({Key key, @required this.initialJournal, @required this.onJournalRemoved, @required this.onJournalEdited}) : super(key: key);

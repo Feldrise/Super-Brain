@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/JournalItem.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
-import 'package:super_brain/Widgets/JournalWidget.dart';
+import 'package:super_brain/Widgets/DailyJournal/JournalWidget.dart';
 
 class DailyJournalPage extends StatefulWidget {
   DailyJournalPageState createState() => DailyJournalPageState();

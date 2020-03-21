@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/Models/DreamItem.dart';
-import 'package:super_brain/Widgets/ViewDreamWidget.dart';
+import 'package:super_brain/Widgets/DreamsJournal/ViewDreamWidget.dart';
 
 class ViewDreamDialog extends StatelessWidget {
   const ViewDreamDialog({Key key, @required this.dreamItem, @required this.onDreamEdited}) : super(key: key);

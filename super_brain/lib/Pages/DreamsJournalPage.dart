@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/DreamItem.dart';
-import 'package:super_brain/Widgets/DreamWidget.dart';
+import 'package:super_brain/Widgets/DreamsJournal/DreamWidget.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
 
 class DreamsJournalPage extends StatefulWidget {
