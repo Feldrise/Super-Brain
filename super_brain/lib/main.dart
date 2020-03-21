@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // Define the default brightness and colors.
         brightness: Brightness.light,
-        scaffoldBackgroundColor: Colors.white,
-        primaryColor: Colors.deepPurple[500],
-        accentColor: Colors.deepPurple[500],
+        scaffoldBackgroundColor: Color(0xff23272F),
+        primaryColor: Color(0xff2C313B),
+        accentColor: Color(0xff2A8CF8),
         // Define the default font family.
         fontFamily: 'Roboto',
 
@@ -22,17 +22,17 @@ class MyApp extends StatelessWidget {
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+          title: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.white),
           body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
 
         cardTheme: CardTheme(
-          elevation: 8,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
           color: Colors.white,
-          margin: EdgeInsets.all(8)
+          margin: EdgeInsets.all(12)
         ),
       ),
       home: MainPage(),

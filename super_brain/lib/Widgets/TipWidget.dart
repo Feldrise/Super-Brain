@@ -34,6 +34,7 @@ class TipWidgetState extends State<TipWidget> {
   @override
   Widget build(BuildContext context) {
     return Card (
+      color: Theme.of(context).primaryColor,
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -42,7 +43,7 @@ class TipWidgetState extends State<TipWidget> {
               padding: EdgeInsets.all(16.0),
               child: Icon(
                 Icons.wb_incandescent,
-                color: Theme.of(context).accentColor,
+                color: Colors.white,
                 size: 64,
               ),
             ),
@@ -56,7 +57,7 @@ class TipWidgetState extends State<TipWidget> {
                         RichText(
                           text: TextSpan(
                             style: TextStyle(
-                              color: Colors.black87
+                              color: Colors.white
                             ),
                             children: <TextSpan>[
                               new TextSpan(text: "Tip of the day: ", style: TextStyle(fontWeight: FontWeight.bold)),
