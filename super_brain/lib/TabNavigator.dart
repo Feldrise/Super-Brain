@@ -6,6 +6,7 @@ import 'package:super_brain/Pages/DailyJournalPage.dart';
 import 'package:super_brain/Pages/DreamsJournalPage.dart';
 import 'package:super_brain/Pages/HomePage.dart';
 import 'package:super_brain/Pages/MorningPage.dart';
+import 'package:super_brain/Pages/MorningTrainingPage.dart';
 import 'package:super_brain/Pages/RemindersPage.dart';
 import 'package:super_brain/Pages/WordsList/10WordsPage.dart';
 import 'package:super_brain/Pages/WordsList/15WordsPage.dart';
@@ -19,6 +20,7 @@ class TabNavigatorRoutes {
   static const String dreamsJournalPage = '/dreamsJournalPage';
   static const String breathingExercisesPage = '/breathingExercicesPage';
   static const String dailyJournalPage = '/dailyJournalPage';
+  static const String morningTrainingPage = '/morningTrainingPage';
 }
 
 class TabNavigator extends StatelessWidget {
@@ -54,6 +56,7 @@ class TabNavigator extends StatelessWidget {
         TabNavigatorRoutes.dreamsJournalPage: (context) => DreamsJournalPage(),
         TabNavigatorRoutes.breathingExercisesPage: (context) => BreathingExercisesPage(),
         TabNavigatorRoutes.dailyJournalPage: (context) => DailyJournalPage(),
+        TabNavigatorRoutes.morningTrainingPage: (context) => MorningTrainingPage(),
       };
     }
     else if (tabItem == TabItem.reminders) {
