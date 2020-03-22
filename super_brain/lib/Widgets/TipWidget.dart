@@ -61,7 +61,7 @@ class TipWidgetState extends State<TipWidget> {
                             ),
                             children: <TextSpan>[
                               new TextSpan(text: "Tip of the day: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                              new TextSpan(text: "bonjour...")
+                              new TextSpan(text: snapshot.data)
                             ]
                           )
                         );

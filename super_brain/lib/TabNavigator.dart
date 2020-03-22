@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/BottomNavigation.dart';
-import 'package:super_brain/Pages/BreathingExercisesPage.dart';
-import 'package:super_brain/Pages/DailyJournalPage.dart';
-import 'package:super_brain/Pages/DreamsJournalPage.dart';
+import 'package:super_brain/Pages/Morning/BreathingExercisesPage.dart';
+import 'package:super_brain/Pages/Morning/DailyJournalPage.dart';
+import 'package:super_brain/Pages/Morning/DreamsJournalPage.dart';
+import 'package:super_brain/Pages/Morning/MorningTrainingPage.dart';
 import 'package:super_brain/Pages/HomePage.dart';
 import 'package:super_brain/Pages/MorningPage.dart';
-import 'package:super_brain/Pages/MorningTrainingPage.dart';
 import 'package:super_brain/Pages/RemindersPage.dart';
 import 'package:super_brain/Pages/WordsList/10WordsPage.dart';
 import 'package:super_brain/Pages/WordsList/15WordsPage.dart';
