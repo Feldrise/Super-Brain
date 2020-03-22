@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_brain/Models/BrethingExercise.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
 
 import 'package:http/http.dart' as http;
@@ -20,7 +21,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
   bool _exercisePlaying = false;
 
   Future fetchExercises() async {
-    final response = await http.get('https://feldrise.com/super_brain/breathingExercises');
+    final response = await http.get(Translations.of(context).text("breathing_exercises_url"));
 
     if (response.statusCode == 200) {
       List<dynamic> httpExercise = json.decode(response.body);
@@ -30,7 +31,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
       }
     } 
     else {
-      throw Exception('Failed to load words');
+      throw Exception(Translations.of(context).text("breathing_exercises_failed_to_load"));
     }
   }
 
@@ -67,17 +68,21 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_exercisePlaying) {
+      _currentDescription = Translations.of(context).text("breathing_exercises_description");
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Morning > Breathing Exercises"),
+        title: Text(Translations.of(context).text("morning_title") + ">" + Translations.of(context).text("breathing_exercises_title")),
       ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TitleWidget(title: "Morning Breathing Exercises"),
+            TitleWidget(title: Translations.of(context).text("breathing_exercises_title")),
             Expanded(
-              flex: 5, 
+              flex: 4, 
               child: Card(
                 color: Theme.of(context).primaryColor,
                 child: Padding(
@@ -98,7 +103,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
               ),
             ),
             Expanded(
-              flex: 3, 
+              flex: 4, 
               child: Card(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -109,7 +114,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
                           child: Text(_currentDescription),
                         ),
                       ),
-                      FlatButton(onPressed: _exercisePlaying ? null : () => {_startExercise(0)}, child: Text("Start"), ),
+                      FlatButton(onPressed: _exercisePlaying ? null : () => {_startExercise(0)}, child: Text(Translations.of(context).text("start")), ),
                     ],
                   ),
                 ),

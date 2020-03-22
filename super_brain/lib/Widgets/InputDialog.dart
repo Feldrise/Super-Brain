@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_brain/Translations.dart';
 
 class InputDialog {
   static Future<String> asyncStringDialog(BuildContext context, String description, String label, String placeholder, String defaultValue) async {
@@ -27,13 +28,13 @@ class InputDialog {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('Cancel'),
+              child: Text(Translations.of(context).text("cancel")),
               onPressed: () {
                 Navigator.of(context).pop("");
               },
             ),
             FlatButton(
-              child: Text('Ok'),
+              child: Text(Translations.of(context).text("ok")),
               onPressed: () {
                 Navigator.of(context).pop(_result);
               },

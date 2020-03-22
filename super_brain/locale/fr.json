@@ -1,0 +1,40 @@
+{
+    "home_title": "Accueil",
+    "10words_list": "Liste de 10 mots quotidienne",
+    "15words_list": "Liste de 15 mots quotidienne",
+    "20words_list": "Liste de 20 mots quotidienne",
+    "tipUrl": "https://feldrise.com/super_brain/dailyTip_fr",
+
+    "morning_title": "Matin",
+    "dreams_journal_title": "Journal des Rêves",
+    "breathing_exercises_title": "Exercices de Réspiration",
+    "breathing_exercises_url": "https://feldrise.com/super_brain/breathingExercises_fr",
+    "breathing_exercises_failed_to_load": "Echec du chargement des exercices",
+    "breathing_exercises_description": "Bienvenue aux exercices de respiration. Les instructions pour les exercices défilent ici pendant que le chronomètre indique le temps restant pour l'exercice en cours. Appuyez sur le bouton \"start\" pour commencer les exercices.",
+    "daily_journal_title": "Journal Quotidien",
+    "morning_training_title": "Entraînement Matinal",
+    "morning_training_description": "Bienvenue à votre entraînement du matin. Comment allez-vous aujourd'hui ? Lorsque vous êtes prêt, choisissez la durée de la session et commencez en appuyant sur l'un des boutons ci-dessous.",
+    "morning_training_pause_title": "Pause",
+    "morning_training_pause_description": "Faites une petite pause de 10 secondes en oubliant pas de réspirer.",
+    "reminders_title": "Rappels",
+
+    "dialog_dream_description": "Entrez le contenue du rêve",
+    "dialog_dream_title": "Contenue du Rêve",
+    "dialog_dream_exemple": "ex : Aujourd'hui j'ai rêvé d'Elisa et...",
+    
+    "dialog_journal_title_description": "Entrez le titre du journal",
+    "dialog_journal_title_title": "Titre du Journal",
+    "dialog_journal_title_exemple": "ex : ToDo & NotToDo",
+
+    "dialog_journal_content_description": "Entrez le contenu du journal",
+    "dialog_journal_content_title": "Contenu du Journal",
+    "dialog_journal_content_exemple": "ex : ToDo : Faire un câlin à Elisa",
+
+    "add": "Ajouter",
+    "edit": "Editer",
+    "edit_title": "Modifier le Titre",
+    "edit_content": "Modifier le Contenu",
+    "cancel": "Annuler",
+    "ok": "Ok",
+    "start": "Démarrer"
+}

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/DreamItem.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/DreamsJournal/DreamWidget.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
@@ -103,12 +104,12 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Morning > Dreams Jourrnal"),
+        title: Text(Translations.of(context).text("morning_title") + " > " + Translations.of(context).text("dreams_journal_title")),
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            TitleWidget(title: "Dreams Journal",),
+            TitleWidget(title: Translations.of(context).text("dreams_journal_title"),),
             Container(
               child: Expanded(
                 child: ListView.builder(
@@ -128,15 +129,15 @@ class DreamsJournalPageState extends State<DreamsJournalPage> {
         onPressed: () async {
           final String text = await InputDialog.asyncStringDialog(
               context,
-              'Enter the dream content',
-              'Dream Content',
-              'eg. Pets, Game...',
+              Translations.of(context).text("dialog_dream_description"),
+              Translations.of(context).text("dialog_dream_title"),
+              Translations.of(context).text("dialog_dream_exemple"),
               '');
           if (text.isNotEmpty) {
             _addDream(text);
           }
         },
-        tooltip: 'Add Dream',
+        tooltip: Translations.of(context).text("add"),
         child: Icon(Icons.add),
       ),
     );

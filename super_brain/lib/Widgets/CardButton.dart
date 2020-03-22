@@ -30,7 +30,7 @@ class CardButton extends StatelessWidget {
               ),
               Expanded(
                 flex: 7,
-                child: Center(child: Text(title)),
+                child: Center(child: Text(title, textAlign: TextAlign.center)),
               ),
             ],
           )

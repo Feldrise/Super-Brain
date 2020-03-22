@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:super_brain/Translations.dart';
 
 class TipWidget extends StatefulWidget {
 
@@ -13,8 +14,8 @@ class TipWidget extends StatefulWidget {
 class TipWidgetState extends State<TipWidget> {
   Future<String> tip;
 
-  Future<String> fetchTip() async {
-    final response = await http.get('https://feldrise.com/super_brain/dailyTip');
+  Future<String> fetchTip(BuildContext context) async {
+    final response = await http.get(Translations.of(context).text("tipUrl"));
 
     if (response.statusCode == 200) {
       return response.body.toString();
@@ -25,14 +26,11 @@ class TipWidgetState extends State<TipWidget> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    tip = fetchTip();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    if (tip == null) {
+      tip = fetchTip(context);
+    }
+
     return Card (
       color: Theme.of(context).primaryColor,
       child: Padding(

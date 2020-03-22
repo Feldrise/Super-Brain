@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:super_brain/Pages/MainPage.dart';
+import 'package:super_brain/Translations.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,6 +37,15 @@ class MyApp extends StatelessWidget {
           margin: EdgeInsets.all(12)
         ),
       ),
+      localizationsDelegates: [
+        const TranslationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+          const Locale('en', ''),
+          const Locale('fr', ''),
+      ],
       home: MainPage(),
     );
   }

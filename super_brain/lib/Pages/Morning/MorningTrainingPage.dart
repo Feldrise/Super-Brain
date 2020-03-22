@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_brain/Models/TrainingExercise.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
 
 class MorningTrainingPage extends StatefulWidget {
@@ -49,7 +50,6 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
           }
           else {
             _currentlyTraining = false;
-            _currentDescription = "Welcome to you morning training. How are you today? When you're ready, choose the time of the session and start by pressing one of the button below.";
             _playedExercisesIndex.clear();
           }
         }
@@ -62,8 +62,8 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
   }
 
   _runPause(int remainingExercises) {
-    _currentTitle = "Pause";
-    _currentDescription = "Do a little break of 10 seconds and remember to breath.";
+    _currentTitle = Translations.of(context).text("morning_training_pause_title");
+    _currentDescription = Translations.of(context).text("morning_training_pause_description");
     _currentTime = 10;
       
      Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
@@ -81,15 +81,19 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_currentlyTraining) {
+      _currentDescription = Translations.of(context).text("morning_training_description");
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Morning > Training"),
+        title: Text(Translations.of(context).text("morning_title") + " > " + Translations.of(context).text("morning_training_title")),
       ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TitleWidget(title: "Morning Training"),
+            TitleWidget(title: Translations.of(context).text("morning_training_title")),
             Visibility(
               child: Expanded(
                 flex: 2,

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:super_brain/Models/DreamItem.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
 
 class ViewDreamWidget extends StatefulWidget {
@@ -39,9 +40,9 @@ class ViewDreamWidgetState extends State<ViewDreamWidget> {
               onPressed: () async {
                 final String text = await InputDialog.asyncStringDialog(
                     context,
-                    'Enter the dream content',
-                    'Dream Content',
-                    'eg. Pets, Game...',
+                    Translations.of(context).text("dialog_dream_description"),
+                    Translations.of(context).text("dialog_dream_title"),
+                    Translations.of(context).text("dialog_dream_exemple"),
                     dreamItem.text);
                 if (text.isNotEmpty) {
                   setState(() {
@@ -51,7 +52,7 @@ class ViewDreamWidgetState extends State<ViewDreamWidget> {
                   widget.onDreamEdited(dreamItem);
                 }
               }, 
-              child: Text("Edit")),
+              child: Text(Translations.of(context).text("edit"))),
           ],
         ),
       ),

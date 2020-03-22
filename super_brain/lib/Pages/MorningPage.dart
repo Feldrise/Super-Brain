@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/CardButton.dart';
 
 class MorningPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class MorningPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Morning"),
+        title: Text(Translations.of(context).text("morning_title")),
       ),
       body: Container(
         child: Padding(
@@ -27,8 +28,8 @@ class MorningPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Expanded(child: CardButton(icon: Icons.brightness_4, title: "Dreams Journal", destinationPage: "dreamsJournalPage", onPush: onPush, showVertical: true,)),
-                    Expanded(child: CardButton(icon: Icons.spa, title: "Breathing Exercices", destinationPage: "breathingExercicesPage", onPush: onPush, showVertical: true,)),
+                    Expanded(child: CardButton(icon: Icons.brightness_4, title: Translations.of(context).text("dreams_journal_title"), destinationPage: "dreamsJournalPage", onPush: onPush, showVertical: true,)),
+                    Expanded(child: CardButton(icon: Icons.spa, title: Translations.of(context).text("breathing_exercises_title"), destinationPage: "breathingExercicesPage", onPush: onPush, showVertical: true,)),
                   ],
                 ),
               ),
@@ -38,8 +39,8 @@ class MorningPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Expanded(child: CardButton(icon: Icons.book, title: "Daily Journal", destinationPage: "dailyJournalPage", onPush: onPush, showVertical: true,)),
-                    Expanded(child: CardButton(icon: Icons.insert_emoticon, title: "Morning Training", destinationPage: "morningTrainingPage", onPush: onPush, showVertical: true,)),  
+                    Expanded(child: CardButton(icon: Icons.book, title: Translations.of(context).text("daily_journal_title"), destinationPage: "dailyJournalPage", onPush: onPush, showVertical: true,)),
+                    Expanded(child: CardButton(icon: Icons.insert_emoticon, title: Translations.of(context).text("morning_training_title"), destinationPage: "morningTrainingPage", onPush: onPush, showVertical: true,)),  
                   ],
                 ),
               ),

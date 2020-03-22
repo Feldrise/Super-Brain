@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
 import 'package:super_brain/Widgets/WordWidget.dart';
 
@@ -34,12 +35,12 @@ class TwentyWordsPageState extends State<TwentyWordsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home > 20 Words List"),
+        title: Text(Translations.of(context).text("home_title") + ">" + Translations.of(context).text("20words_list")),
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            TitleWidget(title: "Daily 20 words list"),
+            TitleWidget(title: Translations.of(context).text("20words_list")),
             Container(
               child: FutureBuilder<List<String>>(
                 future: futureWords,

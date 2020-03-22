@@ -1,13 +1,18 @@
 
 import 'package:flutter/material.dart';
+import 'package:super_brain/Translations.dart';
 
 enum TabItem { morning, home, reminders }
 
-Map<TabItem, String> tabName = {
-  TabItem.morning: 'Morning',
-  TabItem.home: 'Home',
-  TabItem.reminders: 'Reminders',
-};
+Map<TabItem, String> tabName(BuildContext context) {
+ Map<TabItem, String> map = {
+    TabItem.morning: Translations.of(context).text("morning_title"),
+    TabItem.home: Translations.of(context).text("home_title"),
+    TabItem.reminders: Translations.of(context).text("reminders_title"),
+  };
+  
+  return map;
+}
 
 Map<TabItem, IconData> tabIcon = {
   TabItem.morning: Icons.brightness_5,
@@ -33,9 +38,9 @@ class BottomNavigation extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       currentIndex: tabIndex[currentTab],
       items: [
-        _buildItem(tabItem: TabItem.morning),
-        _buildItem(tabItem: TabItem.home),
-        _buildItem(tabItem: TabItem.reminders),
+        _buildItem(context, tabItem: TabItem.morning),
+        _buildItem(context, tabItem: TabItem.home),
+        _buildItem(context, tabItem: TabItem.reminders),
       ],
       onTap: (index) => onSelectTab(
         TabItem.values[index],
@@ -46,8 +51,8 @@ class BottomNavigation extends StatelessWidget {
     );
   }
 
-  BottomNavigationBarItem _buildItem({TabItem tabItem}) {
-    String text = tabName[tabItem];
+  BottomNavigationBarItem _buildItem(BuildContext context, {TabItem tabItem}) {
+    String text = tabName(context)[tabItem];
     IconData icon = tabIcon[tabItem];
     return BottomNavigationBarItem(
       icon: Icon(

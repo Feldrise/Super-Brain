@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/Models/JournalItem.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
 
 class ViewJournalWidget extends StatefulWidget {
@@ -38,9 +39,9 @@ class ViewJournalWidgetState extends State<ViewJournalWidget> {
               onPressed: () async {
                 final String text = await InputDialog.asyncStringDialog(
                     context,
-                    'Enter the journal content',
-                    'Journal Content',
-                    'eg. Todo : x; NoTodo : x...',
+                    Translations.of(context).text("dialog_journal_title_description"),
+                    Translations.of(context).text("dialog_journal_title_title"),
+                    Translations.of(context).text("dialog_journal_title_exemple"),
                     journalItem.content);
                 if (text.isNotEmpty) {
                   setState(() {
@@ -50,15 +51,15 @@ class ViewJournalWidgetState extends State<ViewJournalWidget> {
                   widget.onJournalEdited(journalItem);
                 }
               }, 
-              child: Text("Edit Content")
+              child: Text(Translations.of(context).text("edit_title"))
             ),
             FlatButton(
               onPressed: () async {
                 final String text = await InputDialog.asyncStringDialog(
                     context,
-                    'Enter the journal title',
-                    'Journal Title',
-                    'eg. How I Love Her...',
+                    Translations.of(context).text("dialog_journal_content_description"),
+                    Translations.of(context).text("dialog_journal_content_title"),
+                    Translations.of(context).text("dialog_journal_content_exemple"),
                     journalItem.title);
                 if (text.isNotEmpty) {
                   setState(() {
@@ -68,7 +69,7 @@ class ViewJournalWidgetState extends State<ViewJournalWidget> {
                   widget.onJournalEdited(journalItem);
                 }
               }, 
-              child: Text("Edit Title")
+              child: Text(Translations.of(context).text("edit_content"))
             ),
           ],
         ),

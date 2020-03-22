@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_brain/DatabaseHelper.dart';
 import 'package:super_brain/Models/JournalItem.dart';
+import 'package:super_brain/Translations.dart';
 import 'package:super_brain/Widgets/InputDialog.dart';
 import 'package:super_brain/Widgets/DailyJournal/JournalWidget.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
@@ -104,12 +105,12 @@ class DailyJournalPageState extends State<DailyJournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Morning > Daily Jourrnal"),
+        title: Text(Translations.of(context).text("morning_title") + " > " + Translations.of(context).text("daily_journal_title")),
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            TitleWidget(title: "Daily Journal",),
+            TitleWidget(title: Translations.of(context).text("daily_journal_title"),),
             Container(
               child: Expanded(
                 child: GridView.builder(
@@ -137,17 +138,17 @@ class DailyJournalPageState extends State<DailyJournalPage> {
         onPressed: () async {
           final String title = await InputDialog.asyncStringDialog(
               context,
-              'Enter the journal title',
-              'Journal Title',
-              'eg. How I Love Her...',
+              Translations.of(context).text("dialog_journal_title_description"),
+              Translations.of(context).text("dialog_journal_title_title"),
+              Translations.of(context).text("dialog_journal_title_exemple"),
               '');
 
           if (title.isNotEmpty) {
             final String text = await InputDialog.asyncStringDialog(
                   context,
-                  'Enter the journal content',
-                  'Journal Content',
-                  'eg. Todo : x; NoTodo : x...',
+                  Translations.of(context).text("dialog_journal_content_description"),
+                  Translations.of(context).text("dialog_journal_content_title"),
+                  Translations.of(context).text("dialog_journal_content_exemple"),
                   '');
             
             if (title.isNotEmpty && text.isNotEmpty) {
@@ -155,7 +156,7 @@ class DailyJournalPageState extends State<DailyJournalPage> {
             }
           }
         },
-        tooltip: 'Add Journal',
+        tooltip: Translations.of(context).text("add"),
         child: Icon(Icons.add),
       ),
     );
