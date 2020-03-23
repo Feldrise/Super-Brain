@@ -1,7 +1,6 @@
 class TrainingExercise {
-  TrainingExercise({this.imageTitle, this.title, this.description});
+  TrainingExercise({this.imageTitle, this.title});
 
   String imageTitle;
   String title;
-  String description;
 }

@@ -32,6 +32,12 @@
     "dialog_journal_content_title": "Contenu du Journal",
     "dialog_journal_content_exemple": "ex : ToDo : Faire un câlin à Elisa",
 
+    "training_high_knee": "Montée de Genoux",
+    "training_juming_jacks": "Jumping Jacks",
+    "training_lunges": "Fentes",
+    "training_sit_ups": "Abdo",
+    "training_squats": "Squats",
+
     "add": "Ajouter",
     "edit": "Editer",
     "edit_title": "Modifier le Titre",

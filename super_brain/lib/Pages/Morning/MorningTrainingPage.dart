@@ -16,28 +16,31 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
   
   int _currentTime = 0;
   String _currentTitle = "A Simple Exercice";
-  String _currentDescription = "Welcome to you morning training. How are you today? When you're ready, choose the time of the session and start by pressing one of the button below.";
+  String _currentImageTitle = "women_sport";
+  bool _firstTurnComplete = false;
 
-  List<TrainingExercise> _trainingExercises = [
-    TrainingExercise(imageTitle: "high_knee", title: "High Knees", description: "Montez rapidement les genoux en course."),
-    TrainingExercise(imageTitle: "squats", title: "Squats", description: "Décendez sur vos jambes en gardant le dos bien droit et sans décoller les talons."),
-    TrainingExercise(imageTitle: "lunges", title: "Lunges", description: "Avancé sur une jambe et fléchissez là, puis faites de même avec l'autre"),
-    TrainingExercise(imageTitle: "sit_ups", title: "Sit Ups", description: "Mettez vous sur le dos avec les jambes légèrement fléchis, puis levez le dos sans décoller les pieds."),
-  ];
+  List<TrainingExercise> _trainingExercises = [];
   List<int> _playedExercisesIndex = [];
 
-  _playExercises(int remainingExercises) {
+  _playExercises(int remainingTurn, int remainingExercises) {
     if (remainingExercises > 0) {
       final _random = new Random();
 
       int exerciseIndex = 0;
-      do {
-        exerciseIndex = _random.nextInt(_trainingExercises.length);
-      } while (_playedExercisesIndex.contains(exerciseIndex));
 
-      _playedExercisesIndex.add(exerciseIndex);
+      if (!_firstTurnComplete) {
+        do {
+          exerciseIndex = _random.nextInt(_trainingExercises.length);
+        } while (_playedExercisesIndex.contains(exerciseIndex));
+        
+        _playedExercisesIndex.add(exerciseIndex);
+      }
+      else {
+        exerciseIndex = _playedExercisesIndex[_playedExercisesIndex.length - remainingExercises];
+      }
+      
       _currentTitle = _trainingExercises[exerciseIndex].title;
-      _currentDescription = _trainingExercises[exerciseIndex].description;
+      _currentImageTitle = _trainingExercises[exerciseIndex].imageTitle;
       _currentTime = 30;
 
       Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
@@ -46,10 +49,15 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
           _currentTime = 0;
 
           if (remainingExercises > 1) {
-            _runPause(remainingExercises - 1);
+            _runPause(remainingTurn, remainingExercises - 1);
+          }
+          else if (remainingTurn > 1) {
+            _firstTurnComplete = true;
+            _runPause(remainingTurn - 1, _playedExercisesIndex.length);
           }
           else {
             _currentlyTraining = false;
+            _firstTurnComplete = false;
             _playedExercisesIndex.clear();
           }
         }
@@ -61,16 +69,16 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
     }
   }
 
-  _runPause(int remainingExercises) {
+  _runPause(int remainingTour, int remainingExercises) {
     _currentTitle = Translations.of(context).text("morning_training_pause_title");
-    _currentDescription = Translations.of(context).text("morning_training_pause_description");
+    _currentImageTitle = "women_sport";
     _currentTime = 10;
       
      Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
         if (_currentTime < 1) {
           timer.cancel();
           _currentTime = 0;
-          _playExercises(remainingExercises);
+          _playExercises(remainingTour, remainingExercises);
         }
         else {
           _currentlyTraining = true;
@@ -81,10 +89,16 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_currentlyTraining) {
-      _currentDescription = Translations.of(context).text("morning_training_description");
+    if (_trainingExercises.isEmpty) {
+      _trainingExercises.addAll([
+        TrainingExercise(imageTitle: "high_knee", title: Translations.of(context).text("training_high_knee")),
+        TrainingExercise(imageTitle: "jumping-jacks", title: Translations.of(context).text("training_juming_jacks")),
+        TrainingExercise(imageTitle: "lunges", title: Translations.of(context).text("training_lunges")),
+        TrainingExercise(imageTitle: "sit-ups", title: Translations.of(context).text("training_sit_ups")),
+        TrainingExercise(imageTitle: "squats", title: Translations.of(context).text("training_squats")),
+      ]);
     }
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(Translations.of(context).text("morning_title") + " > " + Translations.of(context).text("morning_training_title")),
@@ -112,7 +126,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                         Expanded(
                           child: Center(
                             child: SvgPicture.asset(
-                              'assets/svg/women_sport.svg',
+                              'assets/svg/$_currentImageTitle.svg',
                               semanticsLabel: "Sportive Women",
                             ),
                           ),
@@ -126,33 +140,30 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
               ),
               visible: _currentlyTraining,
             ),
-            Expanded(
-              flex: _currentlyTraining ? 3 : 7,
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Visibility(
-                          child: Center(
-                            child: SvgPicture.asset(
-                              'assets/svg/women_sport.svg',
-                              semanticsLabel: "Sportive Women",
+            Visibility(
+              child: Expanded(
+                flex: 5,
+                child: Card(
+                  color: Theme.of(context).primaryColor,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                              child: SvgPicture.asset(
+                                'assets/svg/women_sport.svg',
+                                semanticsLabel: "Sportive Women",
+                              ),
                             ),
-                          ),
-                          visible: !_currentlyTraining,
-                        ),
-                        Visibility(
-                          child: SizedBox(height: 24,),
-                          visible: !_currentlyTraining,
-                        ),
-                        Text(_currentDescription, style: TextStyle(color: Colors.white),),
-                    ]
+                          SizedBox(height: 24,),
+                          Text(Translations.of(context).text("morning_training_description"), style: TextStyle(color: Colors.white),),
+                      ]
+                    ),
                   ),
                 ),
               ),
+              visible: !_currentlyTraining,
             ),
             Visibility(
             child: Expanded(
@@ -164,9 +175,10 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                     FlatButton(
                       color: Theme.of(context).accentColor,
                       onPressed: () => {
-                        _playExercises(4)
+                        _firstTurnComplete = false,
+                        _playExercises(2, 3)
                       },
-                      child: Padding(padding: EdgeInsets.all(24), child:Text("5\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
+                      child: Padding(padding: EdgeInsets.all(24), child:Text("4\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(250.0),
                       ),
@@ -176,8 +188,11 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                     ),
                     FlatButton(
                       color: Theme.of(context).accentColor,
-                      onPressed: () => {},
-                      child: Padding(padding: EdgeInsets.all(24), child:Text("10\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
+                      onPressed: () => {
+                        _firstTurnComplete = false,
+                        _playExercises(3, 4)
+                      },
+                      child: Padding(padding: EdgeInsets.all(24), child:Text("8\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(250.0),
                       ),
@@ -187,8 +202,11 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                     ),
                     FlatButton(
                       color: Theme.of(context).accentColor,
-                      onPressed: () => {},
-                      child: Padding(padding: EdgeInsets.all(24), child:Text("15\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
+                      onPressed: () => {
+                        _firstTurnComplete = false,
+                        _playExercises(4, 4)
+                      },
+                      child: Padding(padding: EdgeInsets.all(24), child:Text("12\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(250.0),
                       ),

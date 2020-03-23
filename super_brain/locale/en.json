@@ -32,6 +32,12 @@
     "dialog_journal_content_title": "Journal Content",
     "dialog_journal_content_exemple": "eg: ToDo : Hug Elisa",
 
+    "training_high_knee": "High Knee",
+    "training_juming_jacks": "Jumping-jacks",
+    "training_lunges": "Lunges",
+    "training_sit_ups": "Sit-ups",
+    "training_squats": "Squats",
+
     "add": "Add",
     "edit": "Edit",
     "edit_title": "Edit Title",
