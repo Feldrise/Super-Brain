@@ -19,6 +19,19 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(flex: 4, child: TipWidget()),
+            // If we finally choose to have it vertical ^^' 
+            // Expanded(
+            //   flex: 2,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     mainAxisSize: MainAxisSize.max,
+            //     crossAxisAlignment: CrossAxisAlignment.stretch,
+            //     children: <Widget>[
+            //       Expanded(child: CardButton(icon: Icons.format_list_numbered, title: Translations.of(context).text("10words_list"), destinationPage: "tenWordsPage", onPush: onPush, showVertical: true,)),
+            //       Expanded(child: CardButton(icon: Icons.format_list_numbered, title: Translations.of(context).text("15words_list"), destinationPage: "fifteenWordsPage", onPush: onPush, showVertical: true)),
+            //     ],
+            //   ),
+            // ),
             Expanded(flex: 2, child: CardButton(icon: Icons.format_list_numbered, title: Translations.of(context).text("10words_list"), destinationPage: "tenWordsPage", onPush: onPush)),
             Expanded(flex: 2, child: CardButton(icon: Icons.format_list_numbered, title: Translations.of(context).text("15words_list"), destinationPage: "fifteenWordsPage", onPush: onPush,)),
             Expanded(flex: 2, child: CardButton(icon: Icons.format_list_numbered, title: Translations.of(context).text("20words_list"), destinationPage: "twentyWordsPage", onPush: onPush,)),
