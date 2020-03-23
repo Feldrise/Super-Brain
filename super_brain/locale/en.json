@@ -17,6 +17,8 @@
     "morning_training_pause_title": "Pause",
     "morning_training_pause_description": "Do a little break of 10 seconds and remember to breath.",
     "reminders_title": "Reminders",
+    "reminders_url": "https://feldrise.com/super_brain/reminders",
+    "reminders_download_failed": "Failed while downloading reminders...",
 
     "dialog_dream_description": "Enter the dream content",
     "dialog_dream_title": "Dream Content",
