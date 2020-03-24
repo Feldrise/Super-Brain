@@ -1,2 +1,5 @@
 keytools/*
 super_brain/android/key.properties
+super_brain/.idea/*
+super_brain/pubspec.lock
+super_brain/build/*
