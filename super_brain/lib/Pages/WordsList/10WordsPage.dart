@@ -35,7 +35,7 @@ class TenWordsPageState extends State<TenWordsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Translations.of(context).text("home_title") + ">" + Translations.of(context).text("10words_list")),
+        title: Text(Translations.of(context).text("home_title") + " > " + Translations.of(context).text("10words_list")),
       ),
       body: Container(
         child: Column(

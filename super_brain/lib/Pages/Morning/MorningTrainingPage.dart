@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_brain/Models/TrainingExercise.dart';
@@ -32,7 +31,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
 
   void _playLongBeep() {
       AudioCache cache = new AudioCache();
-      cache.play("sounds/long_beep.wav");
+        cache.play("sounds/long_beep.wav");
   }
 
   _playExercises(int remainingTurn, int remainingExercises) {
@@ -54,7 +53,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
       
       _currentTitle = _trainingExercises[exerciseIndex].title;
       _currentImageTitle = _trainingExercises[exerciseIndex].imageTitle;
-      _currentTime = 5;
+      _currentTime = 30;
 
       Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
         if (_currentTime < 1) {
@@ -96,8 +95,8 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
 
   _runPause(int remainingTour, int remainingExercises) {
     _currentTitle = Translations.of(context).text("morning_training_pause_title");
-    _currentImageTitle = "women_sport";
-    _currentTime = 3;
+    _currentImageTitle = "pause";
+    _currentTime = 10;
       
      Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
         if (_currentTime < 1) {

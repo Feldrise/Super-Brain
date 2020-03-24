@@ -35,7 +35,7 @@ class FifteenWordsPageState extends State<FifteenWordsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Translations.of(context).text("home_title") + ">" + Translations.of(context).text("15words_list")),
+        title: Text(Translations.of(context).text("home_title") + " > " + Translations.of(context).text("15words_list")),
       ),
       body: Container(
         child: Column(

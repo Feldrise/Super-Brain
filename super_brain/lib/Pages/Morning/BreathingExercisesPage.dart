@@ -74,7 +74,7 @@ class BreathingExercisesPageState extends State<BreathingExercisesPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(Translations.of(context).text("morning_title") + ">" + Translations.of(context).text("breathing_exercises_title")),
+        title: Text(Translations.of(context).text("morning_title") + " > " + Translations.of(context).text("breathing_exercises_title")),
       ),
       body: Container(
         child: Column(
