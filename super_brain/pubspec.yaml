@@ -30,6 +30,7 @@ dependencies:
   sqflite: ^1.0.0
   path_provider: ^1.6.5
   flutter_svg: ^0.17.3
+  audioplayers: ^0.14.2
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
   assets:
     - assets/icon/
     - assets/svg/
+    - assets/sounds/
     - locale/en.json
     - locale/fr.json
 

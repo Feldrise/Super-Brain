@@ -16,6 +16,8 @@
     "morning_training_description": "Welcome to you morning training. How are you today? When you're ready, choose the duration of the session and start by pressing one of the button below.",
     "morning_training_pause_title": "Pause",
     "morning_training_pause_description": "Do a little break of 10 seconds and remember to breath.",
+    "morning_training_congrats_title": "Congratulation",
+    "morning_training_congrats_content": "You've finished your session. A good heart is equal to a good brain, have a nice day!",
     "reminders_title": "Reminders",
     "reminders_url": "https://feldrise.com/super_brain/reminders",
     "reminders_download_failed": "Failed while downloading reminders...",

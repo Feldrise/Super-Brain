@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_brain/Models/TrainingExercise.dart';
 import 'package:super_brain/Translations.dart';
+import 'package:super_brain/Widgets/MorningTraining/CongratsDialog.dart';
 import 'package:super_brain/Widgets/TitleWidget.dart';
 
 class MorningTrainingPage extends StatefulWidget {
@@ -21,6 +24,16 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
 
   List<TrainingExercise> _trainingExercises = [];
   List<int> _playedExercisesIndex = [];
+
+  void _playShortBeep() {
+      AudioCache cache = new AudioCache();
+      cache.play("sounds/short_beep.wav");
+  }
+
+  void _playLongBeep() {
+      AudioCache cache = new AudioCache();
+      cache.play("sounds/long_beep.wav");
+  }
 
   _playExercises(int remainingTurn, int remainingExercises) {
     if (remainingExercises > 0) {
@@ -41,7 +54,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
       
       _currentTitle = _trainingExercises[exerciseIndex].title;
       _currentImageTitle = _trainingExercises[exerciseIndex].imageTitle;
-      _currentTime = 30;
+      _currentTime = 5;
 
       Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
         if (_currentTime < 1) {
@@ -59,9 +72,21 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
             _currentlyTraining = false;
             _firstTurnComplete = false;
             _playedExercisesIndex.clear();
+            
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => CongratsDialog(),
+            );
           }
         }
         else {
+          if (_currentTime <= 6 && _currentTime > 1) {
+            _playShortBeep();
+          }
+          else if (_currentTime == 1) {
+            _playLongBeep();
+          }
+
           _currentlyTraining = true;
           _currentTime = _currentTime - 1;
         }
@@ -72,7 +97,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
   _runPause(int remainingTour, int remainingExercises) {
     _currentTitle = Translations.of(context).text("morning_training_pause_title");
     _currentImageTitle = "women_sport";
-    _currentTime = 10;
+    _currentTime = 3;
       
      Timer.periodic(Duration(seconds: 1), (Timer timer) => setState(() {
         if (_currentTime < 1) {
@@ -81,6 +106,13 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
           _playExercises(remainingTour, remainingExercises);
         }
         else {
+          if (_currentTime <= 6 && _currentTime > 1) {
+            _playShortBeep();
+          }
+          else if (_currentTime == 1) {
+            _playLongBeep();
+          }
+
           _currentlyTraining = true;
           _currentTime = _currentTime - 1;
         }
@@ -176,6 +208,8 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                       color: Theme.of(context).accentColor,
                       onPressed: () => {
                         _firstTurnComplete = false,
+                        _currentlyTraining = true,
+                        _playShortBeep(),
                         _playExercises(2, 3)
                       },
                       child: Padding(padding: EdgeInsets.all(24), child:Text("4\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
@@ -190,6 +224,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                       color: Theme.of(context).accentColor,
                       onPressed: () => {
                         _firstTurnComplete = false,
+                        _currentlyTraining = true,
                         _playExercises(3, 4)
                       },
                       child: Padding(padding: EdgeInsets.all(24), child:Text("8\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),
@@ -204,6 +239,7 @@ class MorningTrainingPageState extends State<MorningTrainingPage> {
                       color: Theme.of(context).accentColor,
                       onPressed: () => {
                         _firstTurnComplete = false,
+                        _currentlyTraining = true,
                         _playExercises(4, 4)
                       },
                       child: Padding(padding: EdgeInsets.all(24), child:Text("12\nMIN", textAlign: TextAlign.center, style: TextStyle(color:  Colors.white,),)),

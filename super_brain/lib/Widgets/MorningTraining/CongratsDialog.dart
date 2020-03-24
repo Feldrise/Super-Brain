@@ -3,10 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_brain/Models/Reminder.dart';
 import 'package:super_brain/Translations.dart';
 
-class ReminderDialog extends StatelessWidget {
-  const ReminderDialog({Key key, @required this.reminder}) : super(key: key);
-
-  final Reminder reminder;
+class CongratsDialog extends StatelessWidget {
+  const CongratsDialog({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class ReminderDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min, // To make the card compact
               children: <Widget>[
                 Text(
-                  reminder.title,
+                  Translations.of(context).text("morning_training_congrats_title"),
                   style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.w700,
@@ -50,7 +48,7 @@ class ReminderDialog extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  reminder.content,
+                  Translations.of(context).text("morning_training_congrats_content"),
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 16.0,
